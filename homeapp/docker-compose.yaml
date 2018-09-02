@@ -1,0 +1,55 @@
+version: '3'
+
+services:
+
+  traefik:
+    image: traefik:latest
+    command: --web --docker --docker.domain=localhost.local --logLevel=DEBUG
+    networks:
+      - microapps1
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  homeapp:
+    image: microapps/homeapp
+    labels:
+      - "traefik.frontend.rule=Host:localhost"
+    build:
+      context: ../homeapp/
+      dockerfile: Dockerfile
+    restart: always
+    container_name: homeapp
+    networks:
+      - microapps1
+
+  reactapp1:
+    image: microapps/reactapp1
+    labels:
+      - "traefik.frontend.rule=Host:localhost; PathPrefixStrip: /reactapp1"
+    build:
+      context: ../reactapp1/
+      dockerfile: Dockerfile
+    restart: always
+    container_name: reactapp1
+    networks:
+      - microapps1
+
+  reactapp2:
+    image: microapps/reactapp2
+    labels:
+      - "traefik.frontend.rule=Host:localhost; PathPrefixStrip: /reactapp2"
+    build:
+      context: ../reactapp2/
+      dockerfile: Dockerfile
+    restart: always
+    container_name: reactapp2
+    networks:
+      - microapps1
+
+networks:
+  microapps1:
+    driver: bridge
