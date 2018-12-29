@@ -1,4 +1,4 @@
-#### Micro Web Apps
+#### Micro Web Apps (Micro frontends)
 - clone the repo
 
 ##### build 1st app:
