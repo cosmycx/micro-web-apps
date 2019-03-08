@@ -11,10 +11,15 @@
 - yarn install 
 - yarn build
 
-##### start docker-compose from homeapp folder:
-- cd homeapp
+##### build 3nd app:
+- cd vueapp
+- yarn install 
+- yarn build
+
+##### start docker-compose micro-web-apps folder:
+- cd ..
 - docker-compose up
 - open localhost in a browser
   
 ##### Micro Web Apps presentation:
-[https://slides.com/cosminp/micro-web-apps](https://slides.com/cosminp/micro-web-apps)
+[https://slides.com/cosminp/micro-front-ends](https://slides.com/cosminp/micro-front-ends)
