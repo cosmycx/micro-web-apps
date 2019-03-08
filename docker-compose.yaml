@@ -19,7 +19,7 @@ services:
     labels:
       - "traefik.frontend.rule=Host:localhost"
     build:
-      context: ../homeapp/
+      context: ./homeapp/
       dockerfile: Dockerfile
     restart: always
     container_name: homeapp
@@ -31,7 +31,7 @@ services:
     labels:
       - "traefik.frontend.rule=Host:localhost; PathPrefixStrip: /reactapp1"
     build:
-      context: ../reactapp1/
+      context: ./reactapp1/
       dockerfile: Dockerfile
     restart: always
     container_name: reactapp1
@@ -43,10 +43,22 @@ services:
     labels:
       - "traefik.frontend.rule=Host:localhost; PathPrefixStrip: /reactapp2"
     build:
-      context: ../reactapp2/
+      context: ./reactapp2/
       dockerfile: Dockerfile
     restart: always
     container_name: reactapp2
+    networks:
+      - microapps1
+
+  vueapp:
+    image: microapps/vueapp
+    labels:
+      - "traefik.frontend.rule=Host:localhost; PathPrefixStrip: /vueapp"
+    build:
+      context: ./vueapp/
+      dockerfile: Dockerfile
+    restart: always
+    container_name: vueapp
     networks:
       - microapps1
 

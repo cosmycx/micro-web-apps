@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import logo from '../logo.svg';
 
 import { Link } from "react-router-dom"
 
 
-class App extends Component {
+class Topics extends Component {
+
   render() {
     return (
       <div className="App">
       
-        <header className="App-header">
+        <header className="Topics-header">
 
           <ul>
             <li>
@@ -40,6 +40,8 @@ class App extends Component {
       </div>
     );
   }
-}
 
-export default App;
+}// ./ Topics
+
+export default Topics
+
